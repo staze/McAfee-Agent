@@ -7,7 +7,7 @@
 # Version : 1.0 - Initial Version
 
 # Set up log file, folder and function
-LOGFOLDER="/var/log/organisation"
+LOGFOLDER="/var/log"
 LOG=$LOGFOLDER"/McAfee-Install.log"
 
 if [ ! -d "$LOGFOLDER" ];
@@ -37,10 +37,10 @@ logme()
 if [ -d "/Library/McAfee/cma/" ]
 then
 	logme "Existing installation detected. Upgrading."
-	/Library/Application\ Support/McAfee/install.sh -u 2>&1 | tee -a ${LOG}
+	/private/var/install.sh -u 2>&1 | tee -a ${LOG}
 else
 	logme " - Installing new McAfee Agent"
-	/Library/Application\ Support/McAfee/install.sh -i 2>&1 | tee -a ${LOG}
+	/private/var/install.sh -i 2>&1 | tee -a ${LOG}
 fi
 
 # Now make the agent check for policies and other tasks
